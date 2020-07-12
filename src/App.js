@@ -76,7 +76,7 @@ class App extends Component {
         <p>This is really working</p>
         <button style={style} onClick={this.togglePersonHandler}>
           {' '}
-          Toggle Name
+          Toggle Persons
         </button>
         {persons}
       </div>

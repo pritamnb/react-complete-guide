@@ -1,14 +1,15 @@
-.App {
-  text-align: center;
-}
 .red {
+  border: none;
+
   color: red;
 }
 .bold {
+  border: none;
+
   font-weight: bold;
 }
-.App button {
-  border: 1px solid blue;
+.Cockpit button {
+  border: none;
   padding: 16px;
   background-color: green;
   font: inherit;
@@ -16,15 +17,18 @@
   cursor: pointer;
 }
 
-.App button:hover {
+.Cockpit button:hover {
+  border: none;
   background-color: lightgreen;
   color: black;
 }
 
-.App button.Red {
+.Cockpit button.Red {
+  border: none;
   background-color: red;
 }
 
-.App button.Red:hover {
+.Cockpit button.Red:hover {
+  border: none;
   background-color: salmon;
 }

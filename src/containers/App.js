@@ -1,34 +1,43 @@
-// Diving Deeper into Components & React Internals - 7
+// Diving Deeper into Components & React Internals - 17
 // @ts-nocheck
-import React, { Component } from "react";
-import classes from "./App.css";
+import React, { Component } from 'react';
+import classes from './App.css';
 
-import Radium from "radium";
-import Persons from "../components/Persons/Persons";
-import Cockpit from "../components/Cockpit/Cockpit";
+import Radium from 'radium';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log("[App.js] constructor");
+    console.log('[App.js] constructor');
   }
   state = {
     persons: [
-      { id: 1, name: "Pritam", age: 24 },
-      { id: 2, name: "Manu", age: 29 },
-      { id: 3, name: "Sushi", age: 33 },
+      { id: 1, name: 'Pritam', age: 24 },
+      { id: 2, name: 'Manu', age: 29 },
+      { id: 3, name: 'Suchi', age: 33 },
     ],
-    otherState: "Some other state",
+    otherState: 'Some other state',
     showPersons: false,
+    showCockpit: true,
   };
-
+  /**
+   * Sync state to props
+   */
   static getDerivedStateFromProps(props, state) {
-    console.log("[App.js] getDervideStateFromProps", props);
+    console.log('[App.js] getDervideStateFromProps', props);
     return state;
   }
   componentDidMount() {
-    console.log("[App.js] componentDidMount ");
+    console.log('[App.js] componentDidMount ');
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate ');
+  }
   nameChangedHandler = (event, id) => {
     // console.log('*******************', event.target.value, id);
 
@@ -61,7 +70,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("[App.js] render");
+    console.log('[App.js] render');
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -75,11 +84,21 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonHandler}
-        />
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonHandler}
+          />
+        ) : null}
         {persons}
       </div>
     );

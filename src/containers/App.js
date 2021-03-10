@@ -1,4 +1,4 @@
-// Diving Deeper into Components & React Internals - 17
+// Diving Deeper into Components & React Internals - 21(using react fragment)
 // @ts-nocheck
 import React, { Component } from 'react';
 import classes from './App.css';
@@ -6,6 +6,7 @@ import classes from './App.css';
 import Radium from 'radium';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -83,7 +84,7 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -100,7 +101,7 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </div>
+      </WithClass>
     );
     // return React.createElement(
     //   'div',

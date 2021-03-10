@@ -1,4 +1,4 @@
-// Diving Deeper into Components & React Internals - 21(using react fragment)
+// Diving Deeper into Components & React Internals - 25(setting state correctly)
 // @ts-nocheck
 import React, { Component } from 'react';
 import classes from './App.css';

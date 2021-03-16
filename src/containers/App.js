@@ -15,13 +15,14 @@ class App extends Component {
   }
   state = {
     persons: [
-      { id: 1, name: 'Pritam', age: 24 },
+      { id: 1, name: 'Pritam', age: '24' },
       { id: 2, name: 'Manu', age: 29 },
       { id: 3, name: 'Suchi', age: 33 },
     ],
     otherState: 'Some other state',
     showPersons: false,
     showCockpit: true,
+    changecounter: 0,
   };
   /**
    * Sync state to props
@@ -56,8 +57,11 @@ class App extends Component {
 
     changedPerson[personIndex] = person;
     // console.log('*******************', changedPerson);
-    this.setState({
-      persons: changedPerson,
+    this.setState((prevstate, props) => {
+      return {
+        persons: changedPerson,
+        changecounter: prevstate.changecounter + 1,
+      };
     });
     console.log(this.state);
   };
